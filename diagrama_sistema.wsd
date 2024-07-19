@@ -1,0 +1,61 @@
+@startuml Trabalho
+title Modelagem do Sistema MES 4.0 \n Integrantes: Daniel Estulla Dutra, Marco Antonio Cabral,  \n Victor Minto Charao, Anthony de Oliveira Voltz, Tiago Daitx 
+left to right direction
+skinparam shadowing false
+
+class "Login" {
+    - usuario: String
+    - senha: String
+    - ultimoLogin: String
+}
+
+class "MatériaPrima" {
+    - nome: String
+    - tipo: String
+    - quantidade: Int
+}
+
+class "Colaborador" {
+    - nome: String
+    - email: String
+    - telefone: String
+}
+
+class "Manutenção" {
+    - date: Date
+}
+
+class "Produção" {
+    - nomeDaPeça: String
+    - dataInicio: Date
+    - dataFim: Date
+    - quantidade: Int
+}
+
+class "Maquinas" {
+    - nome: String
+    - modelo: String
+}
+
+class "Relatorio" {
+    - date: Date
+}
+
+class "Qualidade" {
+    - qualidade: Double
+    - date: Date
+}
+
+Login "1" --> "1" Colaborador
+Manutenção "1" --> "1" Maquinas
+Produção "1..*" --> "1" Maquinas
+Produção "1" --> "1" Colaborador
+Produção "1" --> "0..*" MatériaPrima
+Relatorio "1" --> "0..1" Produção
+Relatorio "1" --> "0..1" MatériaPrima
+Relatorio "1" --> "0..1" Manutenção
+Relatorio "1" --> "0..1" Maquinas
+Relatorio "1" --> "0..1" Qualidade
+Qualidade "1" --> "1" Produção
+
+@enduml

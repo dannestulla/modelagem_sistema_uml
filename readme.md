@@ -1,0 +1,1 @@
+Diagrama feito com plantuml, para facil edição, instalar o plugin PlantUML no VSCode
